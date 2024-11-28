@@ -7,7 +7,7 @@ import BookRequest from '../models/BookRequest.js';
 const router = express.Router();
 
 // Get all books
-router.get('/', auth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const books = await Book.find();
     res.json(books);
@@ -17,7 +17,7 @@ router.get('/', auth, async (req, res) => {
 });
 
 // Get book details
-router.get('/:id', auth, async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
     if (!book) {
@@ -30,7 +30,7 @@ router.get('/:id', auth, async (req, res) => {
 });
 
 // Add/remove book from favorites
-router.post('/:id/favorite', auth, async (req, res) => {
+router.post('/:id/favorite', async (req, res) => {
   try {
     const user = await User.findById(req.user.userId);
     const bookId = req.params.id;
